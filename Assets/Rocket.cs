@@ -25,6 +25,19 @@ public class Rocket : MonoBehaviour
         Rotate();
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        switch(collision.gameObject.tag)
+        {
+            case "Friendly":
+                // TODO recharge fuel
+                break;
+            default:
+                // TODO kill player
+                break;
+        }
+    }
+
     private void Rotate()
     {
         rigidbody.freezeRotation = true; //Take manual control of rotation

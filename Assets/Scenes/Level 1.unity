@@ -261,6 +261,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Launch Pad (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7806324419712131061, guid: 906a739d5e6a5bc4e8088bf0940226ce,
+        type: 3}
+      propertyPath: m_TagString
+      value: Friendly
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 906a739d5e6a5bc4e8088bf0940226ce, type: 3}
 --- !u!108 &705507994 stripped
@@ -341,6 +346,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Launch Pad (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7806324419712131061, guid: 906a739d5e6a5bc4e8088bf0940226ce,
+        type: 3}
+      propertyPath: m_TagString
+      value: Friendly
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 906a739d5e6a5bc4e8088bf0940226ce, type: 3}
 --- !u!1001 &1033494293
@@ -409,6 +419,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Launch Pad (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7806324419712131061, guid: 906a739d5e6a5bc4e8088bf0940226ce,
+        type: 3}
+      propertyPath: m_TagString
+      value: Friendly
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 906a739d5e6a5bc4e8088bf0940226ce, type: 3}
@@ -547,6 +562,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Launch Pad
+      objectReference: {fileID: 0}
+    - target: {fileID: 7806324419712131061, guid: 906a739d5e6a5bc4e8088bf0940226ce,
+        type: 3}
+      propertyPath: m_TagString
+      value: Friendly
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 906a739d5e6a5bc4e8088bf0940226ce, type: 3}
