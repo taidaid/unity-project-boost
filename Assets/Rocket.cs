@@ -8,10 +8,8 @@ public class Rocket : MonoBehaviour
     Rigidbody rigidbody;
     AudioSource m_MyAudioSource;
 
-    //Play the music
-    bool m_Play;
-    //Detect when you use the toggle, ensures music isn’t played multiple times
-    bool m_ToggleChange;
+    [SerializeField] float rcsThrust = 100f;
+    [SerializeField] float mainThrust = 5f; 
 
     // Start is called before the first frame update
     void Start()
@@ -23,31 +21,39 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ProcessInput();
+        Thrust();
+        Rotate();
     }
 
-    private void ProcessInput()
+    private void Rotate()
+    {
+        rigidbody.freezeRotation = true; //Take manual control of rotation
+        float rotationThisFrame = rcsThrust * Time.deltaTime;
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Rotate(Vector3.forward * rotationThisFrame);
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            transform.Rotate(-Vector3.forward * rotationThisFrame);
+        }
+        rigidbody.freezeRotation = false; // resume physics control of rotation
+    }
+
+    private void Thrust()
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            if(!m_MyAudioSource.isPlaying)
+            if (!m_MyAudioSource.isPlaying)
             {
                 m_MyAudioSource.Play();
             }
-            rigidbody.AddRelativeForce(Vector3.up);
+            rigidbody.AddRelativeForce(Vector3.up * mainThrust);
         }
         else
         {
             m_MyAudioSource.Stop();
         }
-        if(Input.GetKey(KeyCode.A))
-        {
-            transform.Rotate(Vector3.forward);
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            transform.Rotate(-Vector3.forward);
-        }
-
     }
 }
