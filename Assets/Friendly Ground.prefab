@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 8991950225730135304}
   - component: {fileID: 3932157764422800925}
   m_Layer: 0
-  m_Name: Launch Pad
-  m_TagString: Untagged
+  m_Name: Friendly Ground
+  m_TagString: Friendly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c4952d51c03228b4da92cd01b3635c09, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
