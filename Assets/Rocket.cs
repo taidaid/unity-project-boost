@@ -8,7 +8,8 @@ public class Rocket : MonoBehaviour
     AudioSource audioSource;
 
     [SerializeField] float rcsThrust = 100f;
-    [SerializeField] float mainThrust = 5f;
+    [SerializeField] float mainThrust = 20f;
+    bool isThrusting = false;
 
     [SerializeField] AudioClip mainEngineAudio;
     [SerializeField] AudioClip deathAudio;
@@ -19,6 +20,7 @@ public class Rocket : MonoBehaviour
     [SerializeField] ParticleSystem deathParticles;
     enum State { Alive, Dying, Transcending};
     State state = State.Alive;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,11 +31,15 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(state == State.Alive)
+        
+    }
+
+    private void FixedUpdate()
+    {
+        if (state == State.Alive)
         {
             RespondToThrustInput();
         }
-        
         RespondToRotateInput();
     }
 
@@ -103,7 +109,9 @@ public class Rocket : MonoBehaviour
 
     private void RespondToThrustInput()
     {
-        if (Input.GetKey(KeyCode.Space))
+        isThrusting = Input.GetKey(KeyCode.Space);
+
+        if (isThrusting)
         {
             ApplyThrustWithSound();
         }
@@ -116,7 +124,7 @@ public class Rocket : MonoBehaviour
 
     private void ApplyThrustWithSound()
     {
-        rigidbody.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
+        rigidbody.AddRelativeForce(Vector3.up * mainThrust, ForceMode.Acceleration);
         if (!audioSource.isPlaying)
         {
             audioSource.PlayOneShot(mainEngineAudio);
