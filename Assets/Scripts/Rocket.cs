@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -23,6 +24,8 @@ public class Rocket : MonoBehaviour
     enum State { Alive, Dying, Transcending};
     State state = State.Alive;
 
+    [SerializeField] bool collisionsDisabled = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +36,10 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Debug.isDebugBuild)
+        {
+            ListenForDebugKeys();
+        }
     }
 
     private void FixedUpdate()
@@ -45,9 +51,21 @@ public class Rocket : MonoBehaviour
         RespondToRotateInput();
     }
 
+    private void ListenForDebugKeys()
+    {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            LoadNextScene();
+        }
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            collisionsDisabled = !collisionsDisabled;   
+        }
+    }
+
     void OnCollisionEnter(Collision collision)
     {
-        if(state != State.Alive)
+        if(state != State.Alive || collisionsDisabled)
         {
             return;
         }
@@ -89,8 +107,19 @@ public class Rocket : MonoBehaviour
 
     private void LoadNextScene()
     {
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.buildIndex + 1);
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+
+        if (nextSceneIndex + 1 <= SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(nextSceneIndex);
+        }
+        else
+        {
+            LoadFirstLevel();
+        }
+        
+        
     }
 
     private void RespondToRotateInput()
